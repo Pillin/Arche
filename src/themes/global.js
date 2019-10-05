@@ -21,10 +21,12 @@ export const GlobalStyles = createGlobalStyle`
     text-rendering: optimizeLegibility;
     #root {
       width: 100%;
-        > section {
-        width: 80%;
-        display: flex;
-        justify-content: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .error {
+        border-color: red;
+        background-color: #ffe2e7;
       }
     }
   }`;

@@ -2,11 +2,7 @@ import React from "react";
 import CalculatorContainer from "./components/calculatorContainer";
 
 const App = () => {
-  return (
-    <section>
-      <CalculatorContainer />
-    </section>
-  );
+  return <CalculatorContainer />;
 };
 
 export default App;

@@ -2,10 +2,18 @@ import React from "react";
 import { string, func, arrayOf, shape } from "prop-types";
 import { StyledSelect } from "./select.styled";
 
-const Select = ({ options, label, onSelect, selected, placeholder }) => {
+const Select = ({
+  options,
+  label,
+  onSelect,
+  selected,
+  placeholder,
+  classes
+}) => {
   return (
     <StyledSelect
       name={label}
+      className={classes}
       onChange={event => onSelect(event.currentTarget.value)}
     >
       <option key="option-empty" selected={selected === ""} disabled>
@@ -30,6 +38,11 @@ Select.propTypes = {
       text: string.isRequired,
       value: string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  classes: string
+};
+
+Select.defaultProps = {
+  classes: ""
 };
 export default Select;
