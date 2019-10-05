@@ -3,7 +3,8 @@ import Calculator from "./calculator";
 import {
   changeFirstValue,
   changeSecondValue,
-  changeOperation
+  changeOperation,
+  calculate
 } from "../store/actions";
 
 const mapStateToProps = state => {
@@ -15,7 +16,8 @@ const mapDispatchToProps = dispatch => {
   return {
     changeFirstValue: value => dispatch(changeFirstValue(value)),
     changeSecondValue: value => dispatch(changeSecondValue(value)),
-    changeOperation: value => dispatch(changeOperation(value))
+    changeOperation: value => dispatch(changeOperation(value)),
+    calculate: value => calculate(value)(dispatch)
   };
 };
 export default connect(

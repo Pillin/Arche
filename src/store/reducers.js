@@ -4,7 +4,8 @@ const initialState = {
   firstValue: "",
   secondValue: "",
   result: "",
-  operation: ""
+  operation: "",
+  errors: {}
 };
 
 export const calculatorReducer = (state = initialState, action = {}) => {
@@ -15,6 +16,10 @@ export const calculatorReducer = (state = initialState, action = {}) => {
       return { ...state, secondValue: action.data };
     case ACTIONS.CHANGE_OPERATION:
       return { ...state, operation: action.data };
+    case ACTIONS.FETCH:
+      return { ...state, result: action.data };
+    case ACTIONS.ERROR_DATA:
+      return { ...state, errors: action.data };
     default:
       return state;
   }

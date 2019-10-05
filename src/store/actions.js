@@ -1,8 +1,14 @@
+const axios = require("axios");
+const { getErrorsInData } = require("../utils/validations");
+const { API_URL } = require("../utils/constants");
+
 export const ACTIONS = {
   CHANGE_FIRST_VALUE: "CHANGE_FIRST_VALUE",
   CHANGE_SECOND_VALUE: "CHANGE_SECOND_VALUE",
   CHANGE_OPERATION: "CHANGE_OPERATION",
-  CALL_CALCULATE: "CALL_CALCULATE"
+  CALL_CALCULATE: "CALL_CALCULATE",
+  ERROR_DATA: "ERROR_DATA",
+  FETCH: "FETCH"
 };
 
 export const changeFirstValue = value => {
@@ -26,10 +32,34 @@ export const changeOperation = value => {
   };
 };
 
-export const calculate = () => {
-  const result = 2;
+export const fetchData = data => {
   return {
-    type: ACTIONS.CALL_CALCULATE,
-    data: result
+    type: ACTIONS.FETCH,
+    data
+  };
+};
+
+export const fetchErrorData = data => {
+  return {
+    type: ACTIONS.ERROR_DATA,
+    data
+  };
+};
+
+export const calculate = state => {
+  return dispatch => {
+    const errors = getErrorsInData(state);
+    if (Object.entries(errors).length > 0) {
+      dispatch(fetchErrorData(errors));
+      return;
+    }
+    axios
+      .get(API_URL)
+      .then(response => {
+        dispatch(fetchData(response.data));
+      })
+      .catch(error => {
+        throw error;
+      });
   };
 };

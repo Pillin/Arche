@@ -2,9 +2,15 @@ import React from "react";
 import { string, func, arrayOf, shape } from "prop-types";
 import { StyledSelect } from "./select.styled";
 
-const Select = ({ options, label, onSelect, selected }) => {
+const Select = ({ options, label, onSelect, selected, placeholder }) => {
   return (
-    <StyledSelect name={label} onChange={onSelect}>
+    <StyledSelect
+      name={label}
+      onChange={event => onSelect(event.currentTarget.value)}
+    >
+      <option key="option-empty" selected={selected === ""} disabled>
+        {placeholder}
+      </option>
       {options.map(({ text, value }, key) => (
         <option key={`option-${key.toString()}`} selected={selected === value}>
           {text}
@@ -16,6 +22,7 @@ const Select = ({ options, label, onSelect, selected }) => {
 
 Select.propTypes = {
   label: string.isRequired,
+  placeholder: string.isRequired,
   onSelect: func.isRequired,
   selected: string.isRequired,
   options: arrayOf(

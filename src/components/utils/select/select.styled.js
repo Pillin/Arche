@@ -13,6 +13,9 @@ export const StyledSelect = styled.select`
     padding: 12px 20px 12px 20px;
     width: 100%;
     margin: 8px 0;
+    :disabled {
+      color: gray;
+    }
   }
   & .error {
     border: 1px solid ${({ theme }) => theme.ErrorBorderColor};

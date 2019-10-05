@@ -1,5 +1,5 @@
 import React from "react";
-import { string, func } from "prop-types";
+import { string, func, shape } from "prop-types";
 import { OPTIONS } from "../utils/constants";
 import { validateNumber } from "../utils/validations";
 import Select from "./utils/select";
@@ -8,36 +8,43 @@ import Title from "./utils/title";
 import Button from "./utils/button";
 
 const calculator = props => {
-  const { firstValue, secondValue, result, operation } = props;
+  const { firstValue, secondValue, result, operation, errors } = props;
   const {
     changeFirstValue,
     changeSecondValue,
     changeOperation,
     calculate
   } = props;
+
   return (
     <section>
       <Input
-        label="Num1"
+        placeholder="Num1"
         value={firstValue}
         onChange={changeFirstValue}
         validate={validateNumber}
+        classes={errors.firstValue ? "error" : ""}
       />
       <Input
-        label="Num2"
+        placeholder="Num2"
         value={secondValue}
         onChange={changeSecondValue}
         validate={validateNumber}
+        classes={errors.secondValue ? "error" : ""}
       />
       <Select
-        label="Operación"
+        placeholder="Operación"
         selected={operation}
         options={OPTIONS}
         onSelect={changeOperation}
+        classes={errors.operation ? "error" : ""}
       />
-      <Button label="Calcular" onClick={calculate} />
+      <Button
+        label="Calcular"
+        onClick={() => calculate({ firstValue, secondValue, operation })}
+      />
       <Title label="Resultado" />
-      <Input label="Resultado" value={result} disabled />
+      <Input placeholder="Resultado" value={result} disabled />
     </section>
   );
 };
@@ -50,7 +57,12 @@ calculator.propTypes = {
   changeFirstValue: func.isRequired,
   changeSecondValue: func.isRequired,
   changeOperation: func.isRequired,
-  calculate: func.isRequired
+  calculate: func.isRequired,
+  errors: shape({
+    firstValue: string,
+    secondValue: string,
+    operation: string
+  }).isRequired
 };
 
 export default calculator;
