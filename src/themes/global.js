@@ -15,12 +15,13 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.primaryLight};
     display: flex;
     width: 100wv;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     justify-content: center;
     text-rendering: optimizeLegibility;
     #root {
       width: 100%;
+      height: 100vh;
       display: flex;
       flex-direction: row;
       justify-content: center;

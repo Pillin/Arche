@@ -17,7 +17,7 @@ export const calculatorReducer = (state = initialState, action = {}) => {
     case ACTIONS.CHANGE_OPERATION:
       return { ...state, operation: action.data };
     case ACTIONS.FETCH:
-      return { ...state, result: action.data };
+      return { ...state, result: action.data, errors: {} };
     case ACTIONS.ERROR_DATA:
       return { ...state, errors: action.data };
     default:

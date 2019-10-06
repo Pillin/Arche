@@ -20,7 +20,11 @@ const Select = ({
         {placeholder}
       </option>
       {options.map(({ text, value }, key) => (
-        <option key={`option-${key.toString()}`} selected={selected === value}>
+        <option
+          key={`option-${key.toString()}`}
+          selected={selected === value}
+          value={value}
+        >
           {text}
         </option>
       ))}

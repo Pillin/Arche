@@ -20,6 +20,7 @@ const calculator = props => {
 
   return (
     <StyledCalculator>
+      <Title label="Calculadora" />
       <Input
         placeholder="Num1"
         value={firstValue}
@@ -48,6 +49,7 @@ const calculator = props => {
         label="Calcular"
         onClick={() => calculate({ firstValue, secondValue, operation })}
       />
+      <ErrorMessage errors={errors} name="server" />
       <Title label="Resultado" />
       <Input placeholder="Resultado" value={result} disabled />
     </StyledCalculator>
